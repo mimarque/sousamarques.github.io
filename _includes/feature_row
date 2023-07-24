@@ -7,8 +7,8 @@
 <div class="feature__wrapper">
 
   {% for f in feature_row %}
-    <div class="feature__item{% if include.type %}--{{ include.type }}{% endif %}">
-      <div class="archive__item">
+    <div class="feature__item{% if include.type %}--{{ include.type }}{% endif %}{% unless f.btn_label %} archive__wrapper{% endunless %}">
+      <div class="archive__item{% unless f.btn_label %} archive__item_no_btn{% endunless %}">
         {% if f.image_path %}
           <div class="archive__item-teaser">
             <img src="{{ f.image_path | relative_url }}"
@@ -30,11 +30,14 @@
             </div>
           {% endif %}
 
-          {% if f.url %}
+          {% if f.btn_label %}
             <p><a href="{{ f.url | relative_url }}" class="btn {{ f.btn_class }}">{{ f.btn_label | default: site.data.ui-text[site.locale].more_label | default: "Learn More" }}</a></p>
           {% endif %}
         </div>
       </div>
+      {% unless f.btn_label %}
+      <a href="{{ f.url | relative_url }}" class="archive__linker"></a>
+      {% endunless %}
     </div>
   {% endfor %}
 

@@ -18,6 +18,29 @@
   }
 }
 
+.archive__wrapper {
+  position: relative;
+  padding: 20px;
+}
+
+.archive__linker {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  transition: box-shadow .3s;
+  border-radius:4px;
+
+  &:hover {
+    box-shadow: 0 0 11px rgba(33,33,33,.2);
+  }
+}
+
+.archive__item_no_btn {
+  height: 510px;
+}
+
 .archive__item {
   position: relative;
 
@@ -89,9 +112,12 @@
   position: relative;
   border-radius: $border-radius;
   overflow: hidden;
+  height: 250px;
 
   img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }
 
@@ -241,7 +267,7 @@
 .feature__wrapper {
   @include clearfix();
   margin-bottom: 2em;
-  border-bottom: 1px solid $border-color;
+  //border-bottom: 1px solid $border-color;
 
   .archive__item-title {
     margin-bottom: 0;

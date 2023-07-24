@@ -10,19 +10,44 @@
   {% if gallery.size == 2 %}
     {% assign gallery_layout = 'half' %}
   {% elsif gallery.size >= 3 %}
-    {% assign gallery_layout = 'third' %}
+    {% assign gallery_layout = 'gallery' %}
   {% else %}
     {% assign gallery_layout = '' %}
   {% endif %}
 {% endif %}
 
-<figure class="{{ gallery_layout }} {{ include.class }}">
+{% assign all_tags = 'short,medium,tall,tallest,wide,wide-wide' | split: ',' %}
+
+<grid-container class="{{ gallery_layout }} {{ include.class }}">
+  {% for img in gallery %}
+    {% if img.url %}
+    <grid-item class="{% if all_tags contains img.size %}{{ img.size }}{% else %}small{% endif %}">
+      <img src="{{ img.image_path | relative_url }}" {% if img.position %}style="object-position:{{img.position}};"{% endif %}
+        alt="{% if img.alt %}{{ img.alt }}{% endif %}"
+        {% if img.position %}data-object-position="{{img.position}}"{% endif %}>
+      <a class="gallery_linker" href="{{ img.url | relative_url }}" {% if img.title %}title="{{ img.title }}"{% endif %}></a>
+    </grid-item>
+    {% else %}
+    <grid-item {% if img.url %}{{ img.size | medium }}{% endif %}>
+      <img src="{{ img.image_path | relative_url }}"
+           alt="{% if img.alt %}{{ img.alt }}{% endif %}">
+    </grid-item>
+    {% endif %}
+  {% endfor %}
+  {% if include.caption %}
+    <figcaption>{{ include.caption | markdownify | remove: "<p>" | remove: "</p>" }}</figcaption>
+  {% endif %}
+</grid-container>
+
+
+<!--<figure class="{{ gallery_layout }} {{ include.class }}">
   {% for img in gallery %}
     {% if img.url %}
       <a href="{{ img.url | relative_url }}"
         {% if img.title %}title="{{ img.title }}"{% endif %}>
           <img src="{{ img.image_path | relative_url }}"
-               alt="{% if img.alt %}{{ img.alt }}{% endif %}">
+               alt="{% if img.alt %}{{ img.alt }}{% endif %}"
+               {% if img.position %}data-object-position="{{img.position}}"{% endif %}>
       </a>
     {% else %}
       <img src="{{ img.image_path | relative_url }}"
@@ -32,4 +57,4 @@
   {% if include.caption %}
     <figcaption>{{ include.caption | markdownify | remove: "<p>" | remove: "</p>" }}</figcaption>
   {% endif %}
-</figure>
+</figure>-->
