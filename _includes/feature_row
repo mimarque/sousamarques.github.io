@@ -12,8 +12,8 @@
         {% if f.image_path %}
           <div class="archive__item-teaser">
             {% include responsive-image.html image_path=f.image_path alt=f.alt title=f.title position=f.position %}
-            {% if f.image_caption %}
-              <span class="archive__item-caption">{{ f.image_caption | markdownify | remove: "<p>" | remove: "</p>" }}</span>
+            {% if f.image_caption and f.image_caption != "" %}
+              <span class="archive__item-caption">{{ f.image_caption | strip_html }}</span>
             {% endif %}
           </div>
         {% endif %}
