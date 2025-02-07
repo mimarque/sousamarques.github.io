@@ -21,24 +21,21 @@
 <grid-container class="{{ gallery_layout }} {{ include.class }}">
   {% for img in gallery %}
     {% if img.url %}
-    <grid-item class="{% if all_tags contains img.size %}{{ img.size }}{% else %}small{% endif %}">
-      <img src="{{ img.image_path | relative_url }}" {% if img.position %}style="object-position:{{img.position}};"{% endif %}
-        alt="{% if img.alt %}{{ img.alt }}{% endif %}"
-        {% if img.position %}data-object-position="{{img.position}}"{% endif %}>
-      <a class="gallery_linker" href="{{ img.url | relative_url }}" {% if img.title %}title="{{ img.title }}"{% endif %}></a>
-    </grid-item>
+      <grid-item class="{% if all_tags contains img.size %}{{ img.size }}{% else %}medium{% endif %}">
+        {% include responsive-image.html image_path=img.image_path alt=img.alt title=img.title position=img.position %}
+        <a class="gallery_linker" href="{{ img.url | relative_url }}" {% if img.title %}title="{{ img.title }}"{% endif %}></a>
+      </grid-item>
     {% else %}
-    <grid-item {% if img.url %}{{ img.size | medium }}{% endif %}>
-      <img src="{{ img.image_path | relative_url }}"
-           alt="{% if img.alt %}{{ img.alt }}{% endif %}">
-    </grid-item>
+      <grid-item class="{% if all_tags contains img.size %}{{ img.size }}{% else %}medium{% endif %}">
+        {% include responsive-image.html image_path=img.image_path alt=img.alt title=img.title position=img.position %}
+      </grid-item>
     {% endif %}
   {% endfor %}
+  
   {% if include.caption %}
     <figcaption>{{ include.caption | markdownify | remove: "<p>" | remove: "</p>" }}</figcaption>
   {% endif %}
 </grid-container>
-
 
 <!--<figure class="{{ gallery_layout }} {{ include.class }}">
   {% for img in gallery %}

@@ -1,0 +1,18 @@
+<picture>
+	{% assign ext = include.image_path | split: '.' | last %}
+	
+	{% if ext == 'webp' %}
+	  <source srcset="{{ include.image_path | relative_url }}" type="image/webp">
+	  <img src="{{ include.image_path | replace: '.webp', '.jpg' | relative_url }}"
+		   alt="{% if include.alt %}{{ include.alt }}{% endif %}"
+		   {% if include.position %}style="object-position:{{ include.position }};"{% endif %}
+		   {% if include.title %}title="{{ include.title }}"{% endif %}
+		   {% if include.position %}data-object-position="{{ include.position }}"{% endif %}>
+	{% else %}
+	  <img src="{{ include.image_path | relative_url }}"
+		   alt="{% if include.alt %}{{ include.alt }}{% endif %}"
+		   {% if include.position %}style="object-position:{{ include.position }};"{% endif %}
+		   {% if include.title %}title="{{ include.title }}"{% endif %}
+		   {% if include.position %}data-object-position="{{ include.position }}"{% endif %}>
+	{% endif %}
+  </picture>
