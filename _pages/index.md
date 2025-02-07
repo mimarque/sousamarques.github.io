@@ -6,9 +6,8 @@ header:
   # overlay_color: "#000000"
   # overlay_filter: 0.02
   overlay_spacer: 130px # 215px parallax off
-  overlay_position: 25% 50%
+  overlay_position: 25% 56%
   overlay_image: /assets/images/Desktop.webp
-  parallax: true
 excerpt: >
   I'm Miguel,<br />a photographer and developer based in Portugal
   
@@ -34,6 +33,20 @@ feature_row:
     url: "#"
     # btn_class: "btn--primary"
     # btn_label: "Unavailable"      
+  - image_path: /assets/images/Chips.webp
+    alt: "Programming & gadgets"
+    title: "Programming & gadgets"
+    excerpt: "Under construction"
+    url: "#"
+    # btn_class: "btn--primary"
+    # btn_label: "Unavailable"  
+  - image_path: /assets/images/Chips.webp
+    alt: "Programming & gadgets"
+    title: "Programming & gadgets"
+    excerpt: "Under construction"
+    url: "#"
+    # btn_class: "btn--primary"
+    # btn_label: "Unavailable"    
 ---
 
 {% include feature_row %}

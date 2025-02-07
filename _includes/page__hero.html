@@ -18,7 +18,23 @@
 
 {% assign image_description = image_description | markdownify | strip_html | strip_newlines | escape_once %}
 
-<div class="page__hero{% if page.header.overlay_color or page.header.overlay_image %}--overlay{% endif %}{% if page.header.parallax %} parallax{% endif %}" style="{% if page.header.overlay_color %}background-color: {{ page.header.overlay_color | default: 'transparent' }};{% endif %} {% if overlay_img_path %}background-image: {% if overlay_filter %}{{ overlay_filter }}, {% endif %}url('{{ overlay_img_path }}');{% endif %}{% if page.header.overlay_position %} background-position: {{ page.header.overlay_position }};{% endif %}">
+<style>
+  .css_hero--overlay {
+    {% if page.header.overlay_color %}
+      background-color: {{ page.header.overlay_color | default: 'transparent' }};
+    {% endif %}
+
+    {% if page.header.overlay_image %}
+      background-image: {% if page.header.overlay_filter contains "gradient" %}{{ page.header.overlay_filter }}{% elsif page.header.overlay_filter contains "rgba" %}linear-gradient({{ page.header.overlay_filter }}, {{ page.header.overlay_filter }}){% elsif page.header.overlay_filter %}rgba(0, 0, 0, {{ page.header.overlay_filter }}){% endif %}{% if page.header.overlay_filter %} ,{% endif %} url('{{ page.header.overlay_image | relative_url }}');
+    {% endif %}
+
+    {% if page.header.overlay_position %}
+      background-position: {{ page.header.overlay_position }};
+    {% endif %}
+  }
+</style>
+
+<div class="page__hero{% if page.header.overlay_color or page.header.overlay_image %}--overlay{% endif %} css_hero--overlay">
   {% if page.header.overlay_color or page.header.overlay_image %}
     <div class="wrapper">
       <h1 id="page-title" class="page__title" itemprop="headline">

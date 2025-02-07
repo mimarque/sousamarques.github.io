@@ -15,7 +15,14 @@
   animation-delay: 0.15s;
 
   @include breakpoint($x-large) {
-    max-width: $max-width;
+    /* max-width: $max-width; */
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  
+  /*added*/
+  @include breakpoint(1920px) {
+    max-width: 1536px;
   }
 }
 
@@ -155,10 +162,6 @@ body {
     margin-top: -1.5em;
     padding-left: 1.25rem;
   }
-}
-
-.parallax {
-  background-attachment: fixed;
 }
 
 .page__hero {
