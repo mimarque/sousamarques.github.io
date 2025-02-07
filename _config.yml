@@ -118,6 +118,3 @@ category_archive:
 tag_archive:
   type: liquid
   path: /tags/
-
-kramdown:
-  parse_block_html: true
