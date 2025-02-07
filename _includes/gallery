@@ -21,7 +21,7 @@
 <grid-container class="{{ gallery_layout }} {{ include.class }}">
   {% for img in gallery %}
     {% if img.url %}
-      <grid-item class="{% if all_tags contains img.size %}{{ img.size }}{% else %}medium{% endif %}">
+      <grid-item class="{% if all_tags contains img.size %}{{ img.size }}{% else %}small{% endif %}">
         {% include responsive-image.html image_path=img.image_path alt=img.alt title=img.title position=img.position %}
         <a class="gallery_linker" href="{{ img.url | relative_url }}" {% if img.title %}title="{{ img.title }}"{% endif %}></a>
       </grid-item>
