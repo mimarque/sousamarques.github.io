@@ -1,5 +1,5 @@
 ---
-layout: splash
+layout: splashed
 permalink: /nature-photos/
 title: Nature Photos
 hidden: true
@@ -8,7 +8,7 @@ header:
   # overlay_filter: 0.02
   overlay_spacer: 215px
   overlay_position: 55% 30%
-  overlay_image: /assets/images/CornField.webp
+  overlay_image: /assets/images/CornField_big.webp
 excerpt: >
   I believe that you don’t need a fancy or expensive camera to take good photos.
   You just need to know your camera well and get the framing right
@@ -110,3 +110,4 @@ gallery:
 ---
 
 {% include gallery id="gallery"%}
+{% include grid_gallery_include.html %}
